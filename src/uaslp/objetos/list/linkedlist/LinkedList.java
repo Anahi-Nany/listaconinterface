@@ -1,16 +1,16 @@
 package uaslp.objetos.list.linkedlist;
 
-import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
+import uaslp.objetos.list.Iterator;
 
 //Cambiamos, agregamos implements
-public class LinkedList implements List {
-    private Node head;
-    private Node tail;
+public class LinkedList <T>implements List<T> {
+    private Node <T>head;
+    private Node <T>tail;
     private int size;
 
-    public void addAtTail(String data){
-        Node node = new Node(data);
+    public void addAtTail(T data){
+        Node<T> node = new Node<>(data);//Como es instancia se usa diamante
 
         if(size == 0){
             head = node;
@@ -22,8 +22,8 @@ public class LinkedList implements List {
         size++;
     }
 
-    public void addAtFront(String data){
-        Node node = new Node(data);
+    public void addAtFront(T data){
+        Node<T> node = new Node<>(data);
 
         if (size == 0){
             tail = node;
@@ -37,7 +37,7 @@ public class LinkedList implements List {
     }
 
     public  void remove(int index){
-        Node node = findNode(index);
+        Node<T> node = findNode(index);
 
         if(node == null){
             return;
@@ -64,16 +64,16 @@ public class LinkedList implements List {
         size = 0;
     }
 
-    public void setAt(int index, String data){
-        Node node = findNode(index);
+    public void setAt(int index, T data){
+        Node<T> node = findNode(index);
 
         if (node != null){
             node.data = data;
         }
     }
 
-    public String getAt(int index){
-        Node node = findNode(index);
+    public T getAt(int index){
+        Node<T> node = findNode(index);
 
         return node == null ? null : node.data;
     }
@@ -82,17 +82,17 @@ public class LinkedList implements List {
         return size;
     }
 
-    public Iterator getIterator(){
-        return new LinkedListIterator(head);
+    public Iterator<T> getIterator(){
+        return new LinkedListIterator<>(head);
     }
 
-    public Node findNode(int index){
+    private Node<T> findNode(int index){
 
         if (index < 0 || index > size){
             return null;
         }
 
-        Node node = head;
+        Node<T> node = head;
         int currentIndex = 0;
 
         while (currentIndex != index){

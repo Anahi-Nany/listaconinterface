@@ -1,24 +1,32 @@
+
 package uaslp.objetos.list.arraylist;
 
-import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
+import uaslp.objetos.list.Iterator;
 
 //Cambiamos el class
-public class ArrayList implements List{
+//Aca digo q arraylist cumple con el contrato de la lista
+//buena practica pner @overlay
+//el simbolo es de que son parte
+public class ArrayList <T> implements List <T> {
     private static final int DEFAULT_SIZE = 50;
-    private String[] array;
+    private T[] array;
+
     private int size;
+
+    public static String getName(){return "ArrayList";}
 
     //Sobrecarga
     public ArrayList(){
-        array = new String[DEFAULT_SIZE];
+        array = (T[])new Object[DEFAULT_SIZE];
     }
     public ArrayList(int size){
-        array = new String[size];
+        array = (T[])new Object[size];
     }
+    //object a ser el padre, se
 
     //Agregar a la cola
-    public void addAtTail(String data) {
+    public void addAtTail(T data) {
         if(size == array.length){
             increaseArraySize();
         }
@@ -27,7 +35,7 @@ public class ArrayList implements List{
     }
 
     //Agregar al frente
-    public void addAtFront(String data){
+    public void addAtFront(T data){
         if(size == array.length){
             increaseArraySize();
         }
@@ -59,28 +67,30 @@ public class ArrayList implements List{
         size =0;
     }
 
-    public void setAt(int index, String data){
+    public void setAt(int index, T data){
         if (index >= 0 && index < size){
             array[index] = data;
         }
     }
 
-    public String getAt(int index){
+    public T getAt(int index){
         return index >= 0 && index < size ? array[index] : null;
     }
 
     //Cambio arraylistIterator por iterator
-    public Iterator getIterator(){
-        return new ArrayListIterator(this);
+    //pido que regrese la generalizacion
+    public Iterator<T> getIterator(){
+        return new ArrayListIterator <>(this);
     }
+    //Solo se pone el diamante vacio
 
     public int getSize(){
         return size;
     }
 
     private void increaseArraySize(){
-        String []newArray = new String[array.length * 2];
-
+        T []newArray = (T[])new Object[array.length * 2];
+//casteo
         for (int i = 0; i < size; i++){
             newArray[i] = array[i];
         }

@@ -1,16 +1,22 @@
-import uaslp.objetos.list.List;
 import uaslp.objetos.list.Iterator;
-//import uaslp.objetos.list.uaslp.objetos.list.linkedlist.arraylist.ArrayList;
-//import uaslp.objetos.list.linkedlist.LinkedListIterator;
+import uaslp.objetos.list.List;
 import uaslp.objetos.list.arraylist.ArrayList;
 import uaslp.objetos.list.linkedlist.LinkedList;
+
+
+class Alumnos{
+
+}
 
 public class  Main {
     public static void main(String[] Args) {
         //inicializo
-        List team1 = new LinkedList();
-        List team2 = new LinkedList();
-        List team3 = new LinkedList();
+        List<String> team1 = new LinkedList<>();
+        List<String> team2 = new LinkedList<>();
+        List<String> team3 = new LinkedList<>();
+
+        //esto es lo que logran los generics
+        List<Alumnos> alumnos = new ArrayList<>();
 
         System.out.println("CON LISTAS TIPO LINKEDLIST");
         testingList(team1, team2, team3);
@@ -35,7 +41,7 @@ public class  Main {
 
         team3.addAtFront("Marina");
 
-        Iterator iterator;
+        Iterator<String> iterator;//Iterator iterator;
 
         iterator = team1.getIterator();
 
